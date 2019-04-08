@@ -22,11 +22,11 @@ class UserRecordDeduper
         duplicates << current_user
         duplicates << potential_duplicates
         unchecked_users -= potential_duplicates
-        dedupe(unchecked_users, non_duplicates, duplicates.flatten)
       else
         non_duplicates << current_user
-        dedupe(unchecked_users, non_duplicates, duplicates.flatten)
       end
+
+      dedupe(unchecked_users, non_duplicates, duplicates.flatten)
     end
   end
 end
