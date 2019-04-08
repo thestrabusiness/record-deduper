@@ -1,0 +1,13 @@
+%h2 Potential Duplicates
+%ul
+  - @duplicate_users.each do |user|
+    %li
+      = user.details_summary
+
+%h2 Non Duplicates
+%ul
+  - @non_duplicate_users.each do |user|
+    %li
+      = user.details_summary
+
+= render 'upload_form'

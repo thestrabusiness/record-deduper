@@ -1,0 +1,5 @@
+%h2
+  Import New Record List
+= form_tag duplicates_path, multipart: true do
+  = file_field_tag :file
+  = submit_tag "Import CSV"
