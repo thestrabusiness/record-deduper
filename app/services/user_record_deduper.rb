@@ -19,14 +19,14 @@ class UserRecordDeduper
       potential_duplicates = unchecked_users.select { |user| DuplicateCheck.perform(user, current_user) }
 
       if potential_duplicates.present?
-        duplicates << current_user
+        potential_duplicates << current_user
         duplicates << potential_duplicates
         unchecked_users -= potential_duplicates
       else
         non_duplicates << current_user
       end
 
-      dedupe(unchecked_users, non_duplicates, duplicates.flatten)
+      dedupe(unchecked_users, non_duplicates, duplicates)
     end
   end
 end
