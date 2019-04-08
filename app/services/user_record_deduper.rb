@@ -16,11 +16,7 @@ class UserRecordDeduper
     else
       current_user = unchecked_users.delete_at(0)
 
-      potential_duplicates = unchecked_users.select do |user|
-        Text::Levenshtein.distance(user.email, current_user.email) <= 1 ||
-          Text::Levenshtein.distance(user.last_name, current_user.last_name) <= 1 ||
-          Text::Levenshtein.distance(user.first_name, current_user.first_name) <= 1
-      end
+      potential_duplicates = unchecked_users.select { |user| DuplicateChecker.perform(user, current_user) }
 
       if potential_duplicates.present?
         duplicates << current_user
